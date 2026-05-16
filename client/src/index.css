@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: "DM Sans", system-ui, sans-serif;
+}
+
+.page-enter {
+  animation: fade 0.28s ease-out both;
+}
+
+@layer utilities {
+  .shadow-soft {
+    box-shadow: 0 10px 40px -20px rgba(15, 23, 42, 0.35);
+  }
+}
+
+@layer components {
+  .input-dark {
+    @apply mt-1 w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2.5 text-sm text-white outline-none ring-amber-400/0 focus:ring-2;
+  }
+}
+
+/* Mobile Responsiveness - Only applies below 768px */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 280px;
+    z-index: 50;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 20px 0 50px rgba(0,0,0,0.5);
+  }
+  
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .main-content {
+    margin-left: 0 !important;
+    width: 100% !important;
+    padding-bottom: 80px !important; /* Space for bottom tab bar */
+    padding-top: 60px !important;    /* Space for mobile top bar */
+  }
+
+  /* Responsive Utilities */
+  .table-view {
+    display: none !important;
+  }
+  
+  .card-view {
+    display: block !important;
+  }
+
+  .mobile-grid-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .mobile-stack {
+    flex-direction: column !important;
+  }
+
+  .mobile-full-width {
+    width: 100% !important;
+  }
+}
+
+/* Desktop Defaults for Responsive Utilities */
+@media (min-width: 769px) {
+  .table-view {
+    display: table !important;
+  }
+  
+  .card-view {
+    display: none !important;
+  }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-rise {
+  animation: rise 0.4s ease-out forwards;
+}
