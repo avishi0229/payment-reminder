@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # PayRemind
 
 Multi-tenant payment reminder SaaS: small businesses
@@ -129,3 +130,7 @@ Protected (Bearer token required):
 ## License
 
 Educational / internship demo.
+=======
+# payment-reminder
+payment reminder app for small buisness
+>>>>>>> e6481ec55efe00619b5b09e392d164d5a8803063
