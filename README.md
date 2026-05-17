@@ -55,13 +55,7 @@ cd ../client && npm install
 
 ### 3. Environment variables
 
-Create server/.env:
 
-GOOGLE_CLIENT_ID=your_client_id.apps.googleusercontent.com
-GOOGLE_CLIENT_SECRET=GOCSPX-your_secret
-GOOGLE_REDIRECT_URI=http://localhost:5001/api/auth/gmail/callback
-JWT_SECRET=your_long_random_secret_min_32_chars
-PORT=5001
 
 Never commit real secrets. .env is gitignored.
 See .env.example for reference.
@@ -135,7 +129,7 @@ Protected (Bearer token required):
 ## License
 
 Educational / internship demo.
-=======
+
 # payment-reminder
 payment reminder app for small buisness
->>>>>>> e6481ec55efe00619b5b09e392d164d5a8803063
+
