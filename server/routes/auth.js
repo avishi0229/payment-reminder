@@ -23,7 +23,7 @@ router.post("/register-org", (req, res) => {
       INSERT INTO organizations (name, invite_code, gmail_user, gmail_app_password)
       VALUES (?, ?, '', '')
     `);
-    
+
     const orgResult = insertOrg.run(org_name, inviteCode);
     const orgId = orgResult.lastInsertRowid;
 
@@ -31,7 +31,7 @@ router.post("/register-org", (req, res) => {
       INSERT INTO users (name, email, password, role, org_id)
       VALUES (?, ?, ?, 'admin', ?)
     `);
-    
+
     const userResult = insertUser.run(name, email, hashedPassword, orgId);
     const userId = userResult.lastInsertRowid;
 
@@ -178,10 +178,12 @@ router.get("/gmail/callback", async (req, res) => {
     );
 
     // Redirect to frontend
-    res.redirect("http://localhost:5173/dashboard?gmail=connected");
+    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+    res.redirect(`${frontendUrl}/dashboard?gmail=connected`);
   } catch (err) {
     console.error("Gmail callback error:", err);
-    res.status(500).send("Failed to connect Gmail");
+    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+    res.redirect(`${frontendUrl}/dashboard?gmail=error`);
   }
 });
 
