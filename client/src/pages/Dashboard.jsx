@@ -94,7 +94,7 @@ export default function Dashboard() {
   async function connectGmail() {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:5001/api/auth/gmail/connect", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/gmail/connect`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

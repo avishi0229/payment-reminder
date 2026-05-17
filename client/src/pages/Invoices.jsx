@@ -110,7 +110,7 @@ export default function Invoices() {
   async function exportCsv() {
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch("http://localhost:5001/api/invoices/export", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/invoices/export`, {
         headers: token ? { Authorization: `Bearer ${token}` } : {},
       });
       if (res.status === 401) {
