@@ -120,9 +120,10 @@ export function Navbar({ isOpen, onClose }) {
     try {
       await api.post("/auth/gmail/disconnect");
       toast.success("Gmail disconnected");
-      checkGmailStatus();
-    } catch (e) {
-      toast.error("Failed to disconnect");
+      setGmailStatus({ connected: false, email: null });
+    } catch (err) {
+      toast.error('Failed to disconnect');
+      console.error(err);
     }
   };
 

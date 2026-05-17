@@ -205,14 +205,14 @@ router.post("/gmail/disconnect", requireAuth, (req, res) => {
   try {
     db.prepare(`
       UPDATE organizations 
-      SET gmail_user = NULL, 
-          gmail_access_token = NULL, 
-          gmail_refresh_token = NULL, 
-          gmail_token_expiry = NULL
+      SET gmail_access_token = NULL, 
+          gmail_refresh_token = NULL,
+          gmail_user = ''
       WHERE id = ?
     `).run(req.org_id);
-    res.json({ message: "Gmail disconnected" });
+    res.json({ success: true, message: "Gmail disconnected" });
   } catch (err) {
+    console.error("Disconnect error:", err);
     res.status(500).json({ error: "Failed to disconnect Gmail" });
   }
 });
