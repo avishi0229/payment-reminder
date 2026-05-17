@@ -5,6 +5,11 @@ Multi-tenant payment reminder SaaS: small businesses
 manage invoices, send Gmail reminders via OAuth,
 and track payment status through a clean dashboard.
 
+## Live Demo
+
+- Frontend:  https://payment-reminder-kappa.vercel.app/
+- Backend API: https://payment-reminder-cav6.onrender.com
+
 ## Features
 
 - Multi-tenant auth — each organization has isolated data
