@@ -28,6 +28,10 @@ app.use(
 );
 app.use(express.json());
 
+app.get("/", (_req, res) => {
+  res.json({ status: "Payment Reminder API is running ✅" });
+});
+
 app.get("/api/health", (_req, res) => {
   res.json({ ok: true });
 });
