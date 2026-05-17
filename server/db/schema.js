@@ -16,16 +16,7 @@ export function initDb() {
     )
   `);
 
-  // Migration for existing tables
-  try {
-    db.exec("ALTER TABLE organizations ADD COLUMN gmail_access_token TEXT");
-  } catch (e) {}
-  try {
-    db.exec("ALTER TABLE organizations ADD COLUMN gmail_refresh_token TEXT");
-  } catch (e) {}
-  try {
-    db.exec("ALTER TABLE organizations ADD COLUMN gmail_token_expiry TEXT");
-  } catch (e) {}
+
 
   // Users table
   db.exec(`
@@ -85,6 +76,24 @@ export function initDb() {
       status TEXT DEFAULT 'sent'
     )
   `);
+
+  // Add columns if they don't exist (for existing databases)
+  const addColumnIfNotExists = (table, column, type) => {
+    try {
+      db.prepare(`ALTER TABLE ${table} ADD COLUMN ${column} ${type}`).run();
+    } catch (e) {
+      // Column already exists, ignore error
+    }
+  };
+
+  addColumnIfNotExists('organizations', 'gmail_user', 'TEXT');
+  addColumnIfNotExists('organizations', 'gmail_app_password', 'TEXT');
+  addColumnIfNotExists('organizations', 'gmail_access_token', 'TEXT');
+  addColumnIfNotExists('organizations', 'gmail_refresh_token', 'TEXT');
+  addColumnIfNotExists('organizations', 'gmail_token_expiry', 'TEXT');
+  addColumnIfNotExists('invoices', 'org_id', 'INTEGER');
+  addColumnIfNotExists('reminders', 'org_id', 'INTEGER');
+  addColumnIfNotExists('clients', 'org_id', 'INTEGER');
 
   console.log("SQLite tables initialized");
 }
