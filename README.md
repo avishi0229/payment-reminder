@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+live app demo: https://payment-reminder-kappa.vercel.app/
 # PayRemind
 
 Multi-tenant payment reminder SaaS: small businesses
